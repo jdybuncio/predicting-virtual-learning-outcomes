@@ -16,7 +16,7 @@ Due to the rapid shift towards virtual learning brought on by COVID-19, I am int
   - [Methodology](#methodology)
 - [Exploratory Data Analysis](#exploratory-data-analysis)
 - [Model Selection](#model-selection)
-  - [Test Metric: F1 Score](#test-metric-f1-score)
+  - [Test Metric: AUC Score](#test-metric-auc-score)
   - [Feature Selection](#feature-selection)
   - [Hyperparameter Tuning](#hyperparameter-tuning)
 - [Chosen Model](#chosen-model)
