@@ -87,7 +87,7 @@ def feature_importance(classifier, X_train, X_test, y_train, y_test, color ='red
     
     cols = []
     values = []
-    for f in range(25):
+    for f in range(10):
 
         idx = indices[f]
         col = X_train.columns[idx]
@@ -105,6 +105,6 @@ def feature_importance(classifier, X_train, X_test, y_train, y_test, color ='red
     ax.set_yticklabels(cols)
     ax.invert_yaxis()  # labels read top-to-bottom
     ax.set_xlabel('Feature Importance')
-    ax.set_title('{0} - Top 25 features'.format(model_name))
+    ax.set_title('{0} - Top 10 features'.format(model_name))
 
     plt.show()
