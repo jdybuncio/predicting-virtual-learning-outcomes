@@ -14,8 +14,9 @@ git clone https://github.com/jdybuncio/predicting-virtual-learning-outcomes.git
 cd predicting-virtual-learning-outcomes/src
 python data_processing_script.py
 ```
-This will create the dataframe I used in:  ```data/dataset_for_modeling_day_zero.csv``` 
+This will create the dataframe I used and can be accessed in:  ```data/dataset_for_modeling_day_zero.csv``` 
 Helper functions can be imported from: ```src/modeling_script.py```
+The master branch also has a modeling_notebook repository which contains a python notebook which uses the cleaned dataframe to create the prediction models I evaluate.
 
 
 ## Table of Contents
@@ -130,7 +131,7 @@ n_estimators = 400, learning_rate = 0.2
                                       ,min_samples_leaf = 100
                                       ,max_depth = 3
                                       ,max_features = 'sqrt'
-                                      ,subsample = 1
+                                      ,and subsample = 1.
 
 
 <p align="center">
@@ -146,10 +147,14 @@ Below shows the Top 10 Features measured using SKLearn's feature importance from
 
 
 ## Results and Interpretation
+In my best Gradient Boost model, at a **threshold of 0.39**, I have:
+* TPR (true-positive-rate), i.e. the percentage of students who fail that I accurately predict, to be **0.80**. 
+* FPR (false-positive-rate), i.e. the percentage of students who pass that I predict to fail, to be **0.42**
 
-
+So my model can predict 80% of the students who will Fail on first day of class, but it will also  predict 42% of those who will pass, would Fail. The most important features in my model relate to the number of clicks a student has on the homepage before Day 1 of class and the total number of days interacting with any of the VLE material before the first day of class.
 
 # Conclusion
+With a movement on-line, we have access to new student data which can help both teachers and administrators better achieve success, however defined. This repository shows that tracked student behavior with class materials is a strong predictor for student success and failure, relative to student demogrographics and class information for the given dataset observed. I would bet that as schools move increasingly online, more work will be done to mine the new data collected to be used for various applications, such as the one discussed in this repository. 
 
 [Back to Top](#Table-of-Contents)
 
