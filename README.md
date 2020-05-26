@@ -24,13 +24,13 @@ Helper functions can be imported from: ```src/modeling_script.py```
   - [The Data](#the-data)
   - [Question and Hypothesis](#question-and-hypothesis)
   - [Methodology](#methodology)
-- [Exploratory Data Analysis](#exploratory-data-analysis)
+- [Exploratory Data Analysis](#exploratory-data-analysis-highlights)
 - [Model Selection](#model-selection)
-  - [Test Metric: AUC Score](#Test Metric: AUC)
-  - [Feature Selection](#Cross Validation & Hyperparameter Tuning)
-  - [Hyperparameter Tuning](#Feature Importance)
+  - [Test Metric](#test-metric)
+  - [Model Evaluation](#model-evaluation)
+  - [Hyperparameter Tuning](#feature-importance)
   - [Results and Interpretation](#results-and-interpretation)
-- [Conclusion](#model-selection)
+- [Conclusion](#conclusion)
 
 
 
@@ -71,28 +71,27 @@ Potential Application
 1. Load in and perform EDA into each of the 7 tables provided. This work can be followed by switching to the exploratory_branch of this repository which has a python notebook which contains a summary of my findings.
 2. Merge the dataframes together and perform feature engineering on the VLE level data. Perfom additional EDA.
 3. Create a baseline model using univariate analysis. For example, using a student's highest education level, to what degree of accuracy could I predict if a student would fail a given module-presentation.
-4. Train and test: Logistic Regression, Random Forest, Ada Boost, and Gradient Boosting model via Cross Validation. Evaluate models based off of the highest AUC scores to guide in model tuning and feature selection. This work can be followed by switching to the modeling_branch of this repository which has a python notebook which contains a summary of my findings.
-
+4. Train and test: Logistic Regression, Random Forest, Ada Boost, and Gradient Boosting model via Cross Validation. Evaluate models based off of the highest AUC scores to guide in model tuning and feature selection. This work can be followed by looking at the python notebook contained in the modeling_notebook repository on the master branch.
 
 [Back to Top](#Table-of-Contents)
 
 # Exploratory Data Analysis Highlights
 
-* *Leakage Considered*
+* **Leakage Considered**
 
 I can only consider data I have as of Day 1 of a module-presentation starting to prevent any potential leakage. Some students though already withdraw from a class before Day 1 and are marked as failing the course. I removed these students - 3k students, 9% of dataset -  and that is reflected in all subsequent analysis.
 
 <p align="center">
   <img src="images/unregistration_histo.png" width = 400>
 
-* *Class Balance*
+* **Class Balance**
 
 53% of the students Passed and 47% of the students Failed the given module-presentations I observed. This represents a fairly balanced class which means I do not need to employ any over/under sampling techniques.
 
 <p align="center">
   <img src="images/class_balance.png" width = 400>
 
-* *Relationships to Pass/Fail Rates across some demographic variables*
+* **Relationships to Pass/Fail Rates across some demographic variables**
 
 Females have slightly higher pass rates than Males in the dataset I had. Those with higher levels of education and who took the class from higher income areas have higher pass rates as well.
 
@@ -100,7 +99,7 @@ Females have slightly higher pass rates than Males in the dataset I had. Those w
   <img src="images/demographic_fail_rate.png" width = 800>
 </p>
 
-* *Relationships to Pass/Fail Rates to VLE interactions*
+* **Relationships to Pass/Fail Rates to VLE interactions**
 
 I created a feature which marks the number of days before Day 1 of a class that a student interacts with the VLE materials. For example, if a student clicked on any one of the available materials of a module-presentation across 40 days before a class, I would mark them as having 40 days with the VLE materials. This graph served as the basis of my central hypothesis since it shows the largest disparity in fail rates that I saw across any single variable. Student who spent more days with the material before the class began has much lower fail rates than those who did not interact with the material at all.
 
@@ -109,16 +108,17 @@ I created a feature which marks the number of days before Day 1 of a class that 
 </p>
 
 
+[Back to Top](#Table-of-Contents)
 
 # Model Selection
 
-## Test Metric: AUC
+## Test Metric
 
-The metric I chose to evaluate my models was to optimize the AUC (area-under-the-curve) since I want to:
+The metric I chose to evaluate my models was to optimize the **AUC** (area-under-the-curve) since I want to:
 * Maximize TPR: Predict maximum % students who Fail
 * Minimize FPR: Minimize % of students predicted to fail, who Pass since doing so minimizes potential intervention costs.
 
-## Cross Validation & Hyperparameter Tuning 
+## Model Evaluation
 I used Cross Validation to evaluate the AUC of each of my models in order to direct my hyperparameter tuning and feature selection. 
 
 I also used SKLearn's GridSearch to find the best values for the hyperparameters in my Random Forest and Boosting models.
@@ -146,6 +146,7 @@ Below shows the Top 10 Features measured using SKLearn's feature importance from
 
 
 ## Results and Interpretation
+
 
 
 # Conclusion
